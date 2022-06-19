@@ -8,11 +8,23 @@ const LoadingDirective = {
     const app = createApp(Loading);
     const instance = app.mount(document.createElement('div'));
     el.instance = instance;
+    //console.log(el);
+    // console.log(el.instance);
+    //console.log(el.instance.$el);
+    // console.log(app);
+    const title = binding.arg;
+    if (typeof title != 'undefined') {
+      instance.setTitle(title);
+    }
     if (binding.value) {
       append(el);
     }
   },
   updated(el, binding) {
+    const title = binding.arg;
+    if (typeof title != 'undefined') {
+      el.instance.setTitle(title);
+    }
     if (binding.value !== binding.oldValue) {
       binding.value ? append(el) : remove(el);
     }
